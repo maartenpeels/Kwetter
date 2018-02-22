@@ -36,7 +36,7 @@ data class User(
 ) : IModel
 
 fun EntityManager.createNamedQueryUserFindByQuery() =
-    this.createNamedQuery("userdao.findByUserName", User::class.java)
+        this.createNamedQuery("userdao.findByUserName", User::class.java)
 
 
 //@OneToMany(mapped_by = "user")
