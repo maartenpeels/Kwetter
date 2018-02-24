@@ -14,26 +14,28 @@ data class User(
         @Column(unique = true)
         var email: String,
 
+        var password: String,
+
         var profile_picture: String,
         var location: String,
         var website: String,
 
         @Size(max = 160)
-        var bio: String,
-
-        @OneToMany(mappedBy = "owner")
-        var tweets: List<Tweet>,
-
-        @OneToMany
-        @JoinTable(name = "user_following")
-        var following: List<User>,
+        var bio: String = "",
 
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         override var id: Long = -1,
 
         override var createdAt: Date = Date(),
         override var updatedAt: Date = Date()
-) : IModel
+) : IModel {
+    @OneToMany(mappedBy = "owner")
+    lateinit var tweets: List<Tweet>
+
+    @OneToMany
+    @JoinTable(name = "user_following")
+    lateinit var following: List<User>
+}
 
 fun EntityManager.createNamedQueryUserFindByQuery() =
         this.createNamedQuery("userdao.findByUserName", User::class.java)
