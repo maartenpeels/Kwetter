@@ -6,7 +6,7 @@ import javax.persistence.*
 import javax.validation.constraints.Size
 
 @Entity
-@NamedQuery(name = "userdao.findByUserName", query = "SELECT a FROM User a where a.username like :username")
+@NamedQuery(name = "user.findByUserName", query = "SELECT a FROM User a where a.username like :username")
 data class User(
         @Column(unique = true)
         var username: String,
@@ -38,7 +38,7 @@ data class User(
 }
 
 fun EntityManager.createNamedQueryUserFindByQuery() =
-        this.createNamedQuery("userdao.findByUserName", User::class.java)
+        this.createNamedQuery("user.findByUserName", User::class.java)
 
 
 //@OneToMany(mapped_by = "user")
