@@ -7,7 +7,6 @@ import com.kwetter.dao.IDao
 import com.kwetter.dao.UserDao
 import com.kwetter.models.createNamedQueryUserFindByQuery
 
-
 @Stateless
 open class UserService: AbstractService<User>() {
     override val dao: IDao<User>
