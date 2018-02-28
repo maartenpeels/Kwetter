@@ -1,12 +1,10 @@
 package com.kwetter.dao
 
-import java.util.*
-import javax.ejb.Stateless
+import java.util.Date
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
 
-@Stateless
-abstract class AbstractDao<T: IModel> : IDao<T> {
+abstract class AbstractDao<T : IModel> : IDao<T> {
     @PersistenceContext
     private lateinit var em: EntityManager
 

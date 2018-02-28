@@ -6,16 +6,14 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import com.kwetter.models.User
 import javax.ejb.Stateless
-import javax.inject.Named
 import javax.ws.rs.PathParam
 
 @Stateless
-@Named
-@Path("user")
+@Path("/user")
 open class Users @Inject constructor(private var userService: UserService){
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     fun userById(@PathParam("id") id: Int): User {
         return userService.getById(id)
     }

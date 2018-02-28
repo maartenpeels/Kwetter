@@ -1,9 +1,18 @@
 package com.kwetter.models
 
 import com.kwetter.dao.IModel
-import java.util.*
-import javax.persistence.*
+import java.util.Date
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EntityManager
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.JoinTable
+import javax.persistence.NamedQuery
+import javax.persistence.OneToMany
 import javax.validation.constraints.Size
+import javax.xml.bind.annotation.XmlTransient
 
 @Entity
 @NamedQuery(name = "user.findByUserName", query = "SELECT a FROM User a where a.username like :username")
@@ -30,9 +39,11 @@ data class User(
         override var updatedAt: Date = Date()
 ) : IModel {
     @OneToMany(mappedBy = "owner")
+    @XmlTransient
     lateinit var tweets: List<Tweet>
 
     @OneToMany
+    @XmlTransient
     @JoinTable(name = "user_following")
     lateinit var following: List<User>
 }
